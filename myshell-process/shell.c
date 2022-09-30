@@ -17,7 +17,6 @@ int main()
     printf("[sx@Centos7.9 learn-linux]$ ");
     fgets(command_line, NUM, stdin);
     command_line[strlen(command_line) - 1] = '\0';
-    pid_t id = fork();
     int cnt = 0;
     command_arg[cnt++] = strtok(command_line, SPI);
     while(command_arg[cnt++] = strtok(NULL, SPI));
@@ -26,9 +25,12 @@ int main()
     //{
     //  printf("%s\n", command_arg[i]);
     //}
+    
+    pid_t id = fork();
     if(id == 0)
     {
       execvp(command_arg[0], command_arg);
+      printf("替换失败！");
       exit(1);//退出
     }
     int status = 0;
